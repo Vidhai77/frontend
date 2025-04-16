@@ -86,8 +86,8 @@ const DepartmentHeadPage = () => {
       (budgetRange === "low"
         ? project?.budget < 100000
         : budgetRange === "medium"
-        ? project?.budget >= 100000 && project?.budget < 1000000
-        : project?.budget >= 1000000);
+          ? project?.budget >= 100000 && project?.budget < 1000000
+          : project?.budget >= 1000000);
 
     return matchesSearch && matchesStatus && matchesBudget;
   });
@@ -188,17 +188,16 @@ const DepartmentHeadPage = () => {
                       </td>
                       <td className="border-b p-4">
                         <span
-                          className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${
-                            project?.status === "Completed"
-                              ? "bg-green-100 text-green-700"
-                              : project?.status === "In Progress"
+                          className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${project?.status === "Completed"
+                            ? "bg-green-100 text-green-700"
+                            : project?.status === "In Progress"
                               ? "bg-blue-100 text-blue-700"
                               : project?.status === "Pending"
-                              ? "bg-yellow-100 text-yellow-700"
-                              : project?.status === "Planning"
-                              ? "bg-purple-100 text-purple-700"
-                              : "bg-gray-100 text-gray-700"
-                          }`}
+                                ? "bg-yellow-100 text-yellow-700"
+                                : project?.status === "Planning"
+                                  ? "bg-purple-100 text-purple-700"
+                                  : "bg-gray-100 text-gray-700"
+                            }`}
                         >
                           {project?.status || "N/A"}
                         </span>
@@ -214,8 +213,23 @@ const DepartmentHeadPage = () => {
                             <span className="text-gray-600">
                               Assigned to{" "}
                               <span className="font-medium text-indigo-600">
-                              {project?.tenderer?.name || "Fetching..."}
+                                {project?.tenderer?.name || "Fetching..."}
+                                <br />
+                                <span className="text-sm text-gray-500">
+                                  Phone:
+                                  <a href={`tel:${project?.tenderer?.phone}`} className="hover:text-indigo-600">
+                                    {project?.tenderer?.phone || "Phone not available"}
+                                  </a>
+                                </span>
+                                <br />
+                                <span className="text-sm text-gray-500">
+                                  Email:
+                                  <a href={`mailto:${project?.tenderer?.email}`} className="hover:text-indigo-600">
+                                    {project?.tenderer?.email || "Email not available"}
+                                  </a>
+                                </span>
                               </span>
+
                             </span>
                           ) : (
                             <button
