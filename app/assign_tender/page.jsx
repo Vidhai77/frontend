@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
@@ -53,7 +53,6 @@ const AssignTenderPage = () => {
         }
       );
 
-      // console.log("Response:", response.data);
       alert("Tenderer assigned successfully!");
       router.push("/dhead"); // Redirect after submission
     } catch (error) {
@@ -63,7 +62,7 @@ const AssignTenderPage = () => {
   };
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <Navbar />
       <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
         <h1 className="text-2xl font-bold text-center mb-4">Assign Tender</h1>
@@ -122,7 +121,7 @@ const AssignTenderPage = () => {
           </button>
         </form>
       </div>
-    </>
+    </Suspense>
   );
 };
 
