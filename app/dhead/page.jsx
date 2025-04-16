@@ -214,7 +214,7 @@ const DepartmentHeadPage = () => {
                             <span className="text-gray-600">
                               Assigned to{" "}
                               <span className="font-medium text-indigo-600">
-                                {tenderers[project._id] || "Fetching..."}
+                              {project?.tenderer?.name || "Fetching..."}
                               </span>
                             </span>
                           ) : (
