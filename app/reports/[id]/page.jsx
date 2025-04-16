@@ -22,7 +22,7 @@ const ReportsPage = () => {
 
       try {
         const res = await fetch(
-          `http://localhost:5000/api/reports/${projectId}`,
+          `https://backend-1-auu3.onrender.com/api/reports/${projectId}`,
           {
             headers: {
               Authorization: `Bearer ${authToken}`,

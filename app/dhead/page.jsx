@@ -26,7 +26,7 @@ const DepartmentHeadPage = () => {
 
       try {
         const res = await fetch(
-          `http://localhost:5000/api/projects/department/${departmentFromStorage}`,
+          `https://backend-1-auu3.onrender.com/api/projects/department/${departmentFromStorage}`,
           {
             headers: {
               Authorization: `Bearer ${authToken}`,
@@ -52,7 +52,7 @@ const DepartmentHeadPage = () => {
           if (project.tenderer) {
             try {
               const res = await fetch(
-                `http://localhost:5000/api/users/${project.tenderer}`
+                `https://backend-1-auu3.onrender.com/api/users/${project.tenderer}`
               );
               const data = await res.json();
               console.log(data);

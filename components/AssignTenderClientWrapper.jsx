@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
-// Dynamic import
 const AssignTenderComponent = dynamic(
   () => import("@/components/AssignTenderComponent"),
   { ssr: false }
@@ -12,7 +11,7 @@ const AssignTenderComponent = dynamic(
 
 export default function AssignTenderClientWrapper() {
   const searchParams = useSearchParams();
-  const [projectId, setProjectId] = useState<string | null>(null);
+  const [projectId, setProjectId] = useState(null); // removed type
 
   useEffect(() => {
     const id = searchParams.get("id");

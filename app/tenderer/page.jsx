@@ -31,7 +31,7 @@ const TendererPage = () => {
 
       try {
         const projectsResponse = await fetch(
-          "http://localhost:5000/api/users/auth",
+          "https://backend-1-auu3.onrender.com/api/users/auth",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -152,20 +152,23 @@ const TendererPage = () => {
 
       const token = localStorage.getItem("authToken");
       const currentDate = new Date().toISOString().split("T")[0]; // Format: YYYY-MM-DD
-      const response = await fetch("http://localhost:5000/api/reports/create", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          projectId: selectedProject._id,
-          name: reportForm.name,
-          description: reportForm.description,
-          proofs: uploadedUrls,
-          startDate: currentDate,
-        }),
-      });
+      const response = await fetch(
+        "https://backend-1-auu3.onrender.com/api/reports/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            projectId: selectedProject._id,
+            name: reportForm.name,
+            description: reportForm.description,
+            proofs: uploadedUrls,
+            startDate: currentDate,
+          }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {

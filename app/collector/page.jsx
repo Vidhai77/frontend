@@ -20,7 +20,7 @@ const Page = () => {
           localStorage.getItem("district") || "Unknown District";
         setDistrict(districtFromStorage);
         const res = await fetch(
-          `http://localhost:5000/api/projects/district/${districtFromStorage}`,
+          `https://backend-1-auu3.onrender.com/api/projects/district/${districtFromStorage}`
         );
         const data = await res.json();
         setProjects(data);
@@ -44,21 +44,24 @@ const Page = () => {
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
-      "Are you sure you want to delete this project?",
+      "Are you sure you want to delete this project?"
     );
     if (!confirmDelete) return;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/projects/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `https://backend-1-auu3.onrender.com/api/projects/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         setProjects((prevProjects) =>
-          prevProjects.filter((project) => project._id !== id),
+          prevProjects.filter((project) => project._id !== id)
         );
         alert("Project deleted successfully!");
       } else {
@@ -86,8 +89,8 @@ const Page = () => {
       (budgetRange === "low"
         ? project?.budget < 100000
         : budgetRange === "medium"
-          ? project?.budget >= 100000 && project?.budget < 1000000
-          : project?.budget >= 1000000);
+        ? project?.budget >= 100000 && project?.budget < 1000000
+        : project?.budget >= 1000000);
 
     return matchesSearch && matchesDepartment && matchesStatus && matchesBudget;
   });
@@ -221,12 +224,12 @@ const Page = () => {
                             project?.status === "Completed"
                               ? "bg-green-100 text-green-700"
                               : project?.status === "In Progress"
-                                ? "bg-blue-100 text-blue-700"
-                                : project?.status === "Pending"
-                                  ? "bg-yellow-100 text-yellow-700"
-                                  : project?.status === "Planning"
-                                    ? "bg-purple-100 text-purple-700"
-                                    : "bg-gray-100 text-gray-700"
+                              ? "bg-blue-100 text-blue-700"
+                              : project?.status === "Pending"
+                              ? "bg-yellow-100 text-yellow-700"
+                              : project?.status === "Planning"
+                              ? "bg-purple-100 text-purple-700"
+                              : "bg-gray-100 text-gray-700"
                           }`}
                         >
                           {project?.status || "N/A"}

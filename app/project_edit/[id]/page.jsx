@@ -19,7 +19,9 @@ const EditProject = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/api/projects/${id}`);
+        const res = await fetch(
+          `https://backend-1-auu3.onrender.com/api/projects/${id}`
+        );
         const data = await res.json();
         setProject(data);
       } catch (error) {
@@ -40,11 +42,14 @@ const EditProject = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/projects/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(project),
-      });
+      const response = await fetch(
+        `https://backend-1-auu3.onrender.com/api/projects/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(project),
+        }
+      );
 
       if (response.ok) {
         alert("Project updated successfully!");
